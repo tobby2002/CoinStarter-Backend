@@ -1,8 +1,10 @@
-package coinstarter.jpa.ticket;
+package coinstarter.jpa.currency;
 
 import lombok.Getter;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -11,13 +13,14 @@ import java.util.Date;
 
 @Getter
 @Entity
-public class Ticket {
+public class Currency {
 
     @Id
     @GeneratedValue
     private long id;
 
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private CurrencyTypes currencyType;
 
     @Temporal(TemporalType.DATE)
     private Date timestamp;
@@ -38,20 +41,20 @@ public class Ticket {
 
     private double changePercent;
 
-    public Ticket() {
+    public Currency() {
 
     }
 
-    private Ticket(String name,
-                   Date timestamp,
-                   int last,
-                   int bid,
-                   int ask,
-                   int low,
-                   int high,
-                   double volume,
-                   int change, double changePercent) {
-        this.name = name;
+    private Currency(CurrencyTypes currencyType,
+                     Date timestamp,
+                     int last,
+                     int bid,
+                     int ask,
+                     int low,
+                     int high,
+                     double volume,
+                     int change, double changePercent) {
+        this.currencyType = currencyType;
         this.timestamp = timestamp;
         this.last = last;
         this.bid = bid;
@@ -63,18 +66,18 @@ public class Ticket {
         this.changePercent = changePercent;
     }
 
-    public static TicketBuilder builder() {
-        return new TicketBuilder();
+    public static CurrencyBuilder builder() {
+        return new CurrencyBuilder();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) { return true; }
-        if (!(o instanceof Ticket)) { return false; }
+        if (!(o instanceof Currency)) { return false; }
 
-        Ticket ticket = (Ticket) o;
+        Currency currency = (Currency) o;
 
-        return id == ticket.id;
+        return id == currency.id;
     }
 
     @Override
@@ -82,8 +85,8 @@ public class Ticket {
         return (int) (id ^ (id >>> 32));
     }
 
-    public static class TicketBuilder {
-        private String name;
+    public static class CurrencyBuilder {
+        private CurrencyTypes currencyType;
 
         private Date timestamp;
 
@@ -103,58 +106,58 @@ public class Ticket {
 
         private double changePercent;
 
-        public TicketBuilder name(String name) {
-            this.name = name;
+        public CurrencyBuilder currencyType(CurrencyTypes currencyType) {
+            this.currencyType = currencyType;
             return this;
         }
 
-        public TicketBuilder timestamp(Date timestamp) {
+        public CurrencyBuilder timestamp(Date timestamp) {
             this.timestamp = timestamp;
             return this;
         }
 
-        public TicketBuilder last(int last) {
+        public CurrencyBuilder last(int last) {
             this.last = last;
             return this;
         }
 
-        public TicketBuilder bid(int bid) {
+        public CurrencyBuilder bid(int bid) {
             this.bid = bid;
             return this;
         }
 
-        public TicketBuilder ask(int ask) {
+        public CurrencyBuilder ask(int ask) {
             this.ask = ask;
             return this;
         }
 
-        public TicketBuilder low(int low) {
+        public CurrencyBuilder low(int low) {
             this.low = low;
             return this;
         }
 
-        public TicketBuilder high(int high) {
+        public CurrencyBuilder high(int high) {
             this.high = high;
             return this;
         }
 
-        public TicketBuilder volume(double volume) {
+        public CurrencyBuilder volume(double volume) {
             this.volume = volume;
             return this;
         }
 
-        public TicketBuilder change(int change) {
+        public CurrencyBuilder change(int change) {
             this.change = change;
             return this;
         }
 
-        public TicketBuilder changePercent(double changePercent) {
+        public CurrencyBuilder changePercent(double changePercent) {
             this.changePercent = changePercent;
             return this;
         }
 
-        public Ticket build() {
-            return new Ticket(name, timestamp, last, bid, ask, low, high, volume, change, changePercent);
+        public Currency build() {
+            return new Currency(currencyType, timestamp, last, bid, ask, low, high, volume, change, changePercent);
         }
 
     }
