@@ -27,14 +27,7 @@ public class CurrencyBatchThread implements Runnable {
 
     public CurrencyBatchThread(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
-
-        CloseableHttpClient httpClient = HttpClients.custom()
-                                                    .setSSLHostnameVerifier(new NoopHostnameVerifier())
-                                                    .build();
-        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-        requestFactory.setHttpClient(httpClient);
-
-        this.restTemplate = new RestTemplate(requestFactory);
+        this.restTemplate = new RestTemplate(getHttpRequestFactory());
         this.mapper = new ObjectMapper();
     }
 
@@ -42,6 +35,15 @@ public class CurrencyBatchThread implements Runnable {
     public void run() {
         Arrays.stream(CurrencyTypes.values())
               .forEach(this::fetchCurrencyInfo);
+    }
+
+    private HttpComponentsClientHttpRequestFactory getHttpRequestFactory() {
+        CloseableHttpClient httpClient = HttpClients.custom()
+                                                    .setSSLHostnameVerifier(new NoopHostnameVerifier())
+                                                    .build();
+        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+        requestFactory.setHttpClient(httpClient);
+        return requestFactory;
     }
 
     private void fetchCurrencyInfo(CurrencyTypes currencyTypes) {
@@ -55,7 +57,6 @@ public class CurrencyBatchThread implements Runnable {
     private void saveCurrency(String body) {
         try {
             Currency currency = mapper.readValue(body, Currency.class);
-
             currencyRepository.save(currency);
         } catch (IOException ignored) {
         }

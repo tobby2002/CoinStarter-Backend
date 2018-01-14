@@ -12,15 +12,16 @@ public class CurrencyBatchExecutor {
 
     private final static long BATCH_PERIOD_MS = 5000;
     private final static long INITIAL_DELAY = 1000;
+    private final static int CORE_POOL_SIZE = 1;
+
     private final ScheduledThreadPoolExecutor batchExecutorService;
 
     public CurrencyBatchExecutor(CurrencyRepository repository, CurrencyBatchProperties properties) {
-        this.batchExecutorService = new ScheduledThreadPoolExecutor(1,
+        this.batchExecutorService = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
                                                                     new DefaultThreadFactory("currency batch", true),
                                                                     new ThreadPoolExecutor.DiscardPolicy());
         this.batchExecutorService.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
         this.batchExecutorService.setRemoveOnCancelPolicy(true);
-
         this.batchExecutorService.scheduleWithFixedDelay(new CurrencyBatchThread(repository), INITIAL_DELAY, BATCH_PERIOD_MS, MILLISECONDS);
     }
 
