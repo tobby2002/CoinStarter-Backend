@@ -1,6 +1,6 @@
-package coinstarter.domain.currency.batch;
+package coinstarter.batch;
 
-import coinstarter.jpa.currency.CurrencyRepository;
+import coinstarter.domain.currency.repository.CurrencyRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

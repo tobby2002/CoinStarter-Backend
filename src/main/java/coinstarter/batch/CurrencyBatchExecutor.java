@@ -1,6 +1,6 @@
-package coinstarter.domain.currency.batch;
+package coinstarter.batch;
 
-import coinstarter.jpa.currency.CurrencyRepository;
+import coinstarter.domain.currency.repository.CurrencyRepository;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;

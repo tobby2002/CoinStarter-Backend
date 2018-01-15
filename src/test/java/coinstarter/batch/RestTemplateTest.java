@@ -1,4 +1,4 @@
-package coinstarter.domain.currency;
+package coinstarter.batch;
 
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;

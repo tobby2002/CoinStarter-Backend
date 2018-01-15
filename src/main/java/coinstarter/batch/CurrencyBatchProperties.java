@@ -1,4 +1,4 @@
-package coinstarter.domain.currency.batch;
+package coinstarter.batch;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

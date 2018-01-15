@@ -1,6 +1,6 @@
-package coinstarter.domain.currency;
+package coinstarter.batch;
 
-import coinstarter.jpa.currency.CurrencyRepository;
+import coinstarter.domain.currency.repository.CurrencyRepository;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
