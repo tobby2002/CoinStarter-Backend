@@ -1,0 +1,22 @@
+{
+  "properties": [
+    {
+      "sourceType": "coinstarter.batch.CurrencyBatchProperties",
+      "defaultValue": false,
+      "name": "batch.currency.enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "coinstarter.batch.CurrencyBatchProperties",
+      "defaultValue": 5000,
+      "name": "batch.currency.initial-delay",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "coinstarter.batch.CurrencyBatchProperties",
+      "defaultValue": 5000,
+      "name": "batch.currency..period",
+      "type": "java.lang.Long"
+    }
+  ]
+}

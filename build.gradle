@@ -17,14 +17,9 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'checkstyle'
-apply plugin: 'propdeps'
-apply plugin: 'propdeps-maven'
-apply plugin: 'propdeps-idea'
-apply plugin: 'propdeps-eclipse'
 
 group = 'com.gunju'
 version = '0.0.1-SNAPSHOT'
-
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -43,7 +38,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.apache.httpcomponents:httpclient:4.5')
-	optional "org.springframework.boot:spring-boot-configuration-processor"
+	compileOnly("org.springframework.boot:spring-boot-configuration-processor")
 	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
