@@ -1,8 +1,8 @@
 package coinstarter.batch;
 
+import coinstarter.domain.currency.repository.Currency;
 import coinstarter.domain.currency.repository.CurrencyRepository;
-import coinstarter.jpa.currency.Currency;
-import coinstarter.jpa.currency.CurrencyTypes;
+import coinstarter.domain.currency.repository.CurrencyTypes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;

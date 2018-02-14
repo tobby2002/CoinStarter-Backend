@@ -1,9 +1,9 @@
 package coinstarter.api;
 
 import coinstarter.common.exception.CurrencyNotFoundException;
+import coinstarter.domain.currency.repository.Currency;
+import coinstarter.domain.currency.repository.CurrencyTypes;
 import coinstarter.domain.currency.service.CurrencyService;
-import coinstarter.jpa.currency.Currency;
-import coinstarter.jpa.currency.CurrencyTypes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

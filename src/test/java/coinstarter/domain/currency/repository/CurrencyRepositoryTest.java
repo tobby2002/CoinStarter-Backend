@@ -1,7 +1,5 @@
 package coinstarter.domain.currency.repository;
 
-import coinstarter.jpa.currency.Currency;
-import coinstarter.jpa.currency.CurrencyTypes;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

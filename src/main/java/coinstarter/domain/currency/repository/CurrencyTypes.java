@@ -1,4 +1,4 @@
-package coinstarter.jpa.currency;
+package coinstarter.domain.currency.repository;
 
 import lombok.RequiredArgsConstructor;
 

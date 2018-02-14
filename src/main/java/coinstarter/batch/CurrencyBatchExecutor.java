@@ -30,7 +30,7 @@ public class CurrencyBatchExecutor {
         private final String threadName;
         private final boolean daemon;
 
-        public DefaultThreadFactory(String threadName, boolean daemon) {
+        DefaultThreadFactory(String threadName, boolean daemon) {
             this.threadName = threadName;
             this.daemon = daemon;
         }
