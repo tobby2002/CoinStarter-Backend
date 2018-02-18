@@ -10,8 +10,6 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class CurrencyBatchExecutor {
 
-    private final static long BATCH_PERIOD_MS = 5000;
-    private final static long INITIAL_DELAY = 1000;
     private final static int CORE_POOL_SIZE = 1;
 
     private final ScheduledThreadPoolExecutor batchExecutorService;
@@ -22,7 +20,10 @@ public class CurrencyBatchExecutor {
                                                                     new ThreadPoolExecutor.DiscardPolicy());
         this.batchExecutorService.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
         this.batchExecutorService.setRemoveOnCancelPolicy(true);
-        this.batchExecutorService.scheduleWithFixedDelay(new CurrencyBatchThread(repository), INITIAL_DELAY, BATCH_PERIOD_MS, MILLISECONDS);
+        this.batchExecutorService.scheduleWithFixedDelay(new CurrencyBatchThread(repository),
+                                                         properties.getInitialDelay(),
+                                                         properties.getPeriod(),
+                                                         MILLISECONDS);
     }
 
     public static final class DefaultThreadFactory implements ThreadFactory {
