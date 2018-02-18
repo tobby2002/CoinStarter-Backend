@@ -1,0 +1,2 @@
+INSERT INTO currency (currency_type, timestamp, last, bid, ask, low, high, volume, change, change_percent) VALUES ('BTC_KRW', CURRENT_TIMESTAMP(), 12349500, 12310500, 12347500, 11676500, 12753500, 3755.538947511429737844, 389000, 3.25)
+INSERT INTO currency (currency_type, timestamp, last, bid, ask, low, high, volume, change, change_percent) VALUES ('BTC_KRW', CURRENT_TIMESTAMP()-1, 12299000, 12283500, 12285000, 11676500, 12753500, 3754.62300923383902512, 361000, 3.02)

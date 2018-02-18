@@ -1,5 +1,6 @@
 package coinstarter.domain.currency.service;
 
+import coinstarter.common.exception.CurrencyNotFoundException;
 import coinstarter.domain.currency.repository.Currency;
 import coinstarter.domain.currency.repository.CurrencyRepository;
 import coinstarter.domain.currency.repository.CurrencyTypes;
@@ -14,7 +15,13 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public Currency getLastCurrency(CurrencyTypes currencyType) {
-        return repository.findByCurrencyTypeOrderByTimestamp(currencyType);
+        Currency currency = repository.findFirstByCurrencyTypeOrderByTimestampDesc(currencyType);
+
+        if (currency == null) {
+            throw new CurrencyNotFoundException(currencyType.getValue());
+        }
+
+        return currency;
     }
 
 }
