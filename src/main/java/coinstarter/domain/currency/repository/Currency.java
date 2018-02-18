@@ -19,7 +19,7 @@ public class Currency {
     @Enumerated(EnumType.STRING)
     private CurrencyTypes currencyType;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
     private int last;
