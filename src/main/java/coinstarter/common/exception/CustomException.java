@@ -4,16 +4,22 @@ import org.springframework.http.HttpStatus;
 
 public abstract class CustomException extends RuntimeException {
 
-    public CustomException() {
+    CustomException() {
     }
 
-    public CustomException(String message) {
+    CustomException(String message) {
         super(message);
+    }
+
+    public String getMessageCode() {
+        return this.getClass().getSimpleName();
+    }
+
+    public String getDefaultMessage() {
+        return this.getLocalizedMessage();
     }
 
     public abstract HttpStatus getStatus();
 
     public abstract Object[] getArguments();
-
-    public abstract String getDefaultMessage();
 }

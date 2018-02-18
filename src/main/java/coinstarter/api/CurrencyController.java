@@ -1,6 +1,5 @@
 package coinstarter.api;
 
-import coinstarter.common.exception.CurrencyNotFoundException;
 import coinstarter.domain.currency.repository.Currency;
 import coinstarter.domain.currency.repository.CurrencyTypes;
 import coinstarter.domain.currency.service.CurrencyService;
@@ -22,11 +21,6 @@ public class CurrencyController {
     @GetMapping("/{currency}/last")
     public ResponseEntity<Currency> getLastTicker(@PathVariable("currency") CurrencyTypes currencyType) {
         Currency currency = currencyService.getLastCurrency(currencyType);
-
-        if (currency == null) {
-            throw new CurrencyNotFoundException(currencyType.getValue());
-        }
-
         return ResponseEntity.status(HttpStatus.OK)
                              .body(currency);
     }

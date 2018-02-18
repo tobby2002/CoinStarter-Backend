@@ -8,17 +8,12 @@ public abstract class NotFoundException extends CustomException {
         super();
     }
 
-    public NotFoundException(String message) {
+    NotFoundException(String message) {
         super(message);
     }
 
     @Override
     public HttpStatus getStatus() {
         return HttpStatus.NOT_FOUND;
-    }
-
-    @Override
-    public String getDefaultMessage() {
-        return this.getLocalizedMessage();
     }
 }

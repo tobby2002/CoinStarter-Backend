@@ -18,8 +18,9 @@ public class CurrencyAcceptanceTest extends AcceptanceTest {
 
     @Test
     public void getLastTicker_NOTFOUND() {
-        ResponseEntity<Currency> response = template().getForEntity("/currencies/ETH_KRW/last", Currency.class);
+        ResponseEntity<ErrorResponse> response = template().getForEntity("/currencies/ETH_KRW/last", ErrorResponse.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(response.getBody().getMessage()).isEqualTo("해당 화페 정보가 존재하지 않습니다 : eth_krw");
     }
 
     @Test
