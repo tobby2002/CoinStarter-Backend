@@ -20,7 +20,7 @@ public class CurrencyController {
     private final CurrencyService currencyService;
 
     @GetMapping("/{currency}/last")
-    public ResponseEntity<Currency> getLastTicker(@PathVariable CurrencyTypes currencyType) {
+    public ResponseEntity<Currency> getLastTicker(@PathVariable("currency") CurrencyTypes currencyType) {
         Currency currency = currencyService.getLastCurrency(currencyType);
 
         if (currency == null) {
