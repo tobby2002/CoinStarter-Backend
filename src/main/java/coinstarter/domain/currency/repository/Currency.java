@@ -1,7 +1,5 @@
 package coinstarter.domain.currency.repository;
 
-import lombok.Getter;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,7 +9,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
-@Getter
 @Entity
 public class Currency {
 
@@ -41,33 +38,92 @@ public class Currency {
 
     private double changePercent;
 
-    public Currency() {
-
+    public long getId() {
+        return id;
     }
 
-    private Currency(CurrencyTypes currencyType,
-                     Date timestamp,
-                     int last,
-                     int bid,
-                     int ask,
-                     int low,
-                     int high,
-                     double volume,
-                     int change, double changePercent) {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public CurrencyTypes getCurrencyType() {
+        return currencyType;
+    }
+
+    public void setCurrencyType(CurrencyTypes currencyType) {
         this.currencyType = currencyType;
-        this.timestamp = timestamp;
-        this.last = last;
-        this.bid = bid;
-        this.ask = ask;
-        this.low = low;
-        this.high = high;
-        this.volume = volume;
-        this.change = change;
-        this.changePercent = changePercent;
     }
 
-    public static CurrencyBuilder builder() {
-        return new CurrencyBuilder();
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getLast() {
+        return last;
+    }
+
+    public void setLast(int last) {
+        this.last = last;
+    }
+
+    public int getBid() {
+        return bid;
+    }
+
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
+
+    public int getAsk() {
+        return ask;
+    }
+
+    public void setAsk(int ask) {
+        this.ask = ask;
+    }
+
+    public int getLow() {
+        return low;
+    }
+
+    public void setLow(int low) {
+        this.low = low;
+    }
+
+    public int getHigh() {
+        return high;
+    }
+
+    public void setHigh(int high) {
+        this.high = high;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public int getChange() {
+        return change;
+    }
+
+    public void setChange(int change) {
+        this.change = change;
+    }
+
+    public double getChangePercent() {
+        return changePercent;
+    }
+
+    public void setChangePercent(double changePercent) {
+        this.changePercent = changePercent;
     }
 
     @Override
@@ -84,82 +140,4 @@ public class Currency {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
-
-    public static class CurrencyBuilder {
-        private CurrencyTypes currencyType;
-
-        private Date timestamp;
-
-        private int last;
-
-        private int bid;
-
-        private int ask;
-
-        private int low;
-
-        private int high;
-
-        private double volume;
-
-        private int change;
-
-        private double changePercent;
-
-        public CurrencyBuilder currencyType(CurrencyTypes currencyType) {
-            this.currencyType = currencyType;
-            return this;
-        }
-
-        public CurrencyBuilder timestamp(Date timestamp) {
-            this.timestamp = timestamp;
-            return this;
-        }
-
-        public CurrencyBuilder last(int last) {
-            this.last = last;
-            return this;
-        }
-
-        public CurrencyBuilder bid(int bid) {
-            this.bid = bid;
-            return this;
-        }
-
-        public CurrencyBuilder ask(int ask) {
-            this.ask = ask;
-            return this;
-        }
-
-        public CurrencyBuilder low(int low) {
-            this.low = low;
-            return this;
-        }
-
-        public CurrencyBuilder high(int high) {
-            this.high = high;
-            return this;
-        }
-
-        public CurrencyBuilder volume(double volume) {
-            this.volume = volume;
-            return this;
-        }
-
-        public CurrencyBuilder change(int change) {
-            this.change = change;
-            return this;
-        }
-
-        public CurrencyBuilder changePercent(double changePercent) {
-            this.changePercent = changePercent;
-            return this;
-        }
-
-        public Currency build() {
-            return new Currency(currencyType, timestamp, last, bid, ask, low, high, volume, change, changePercent);
-        }
-
-    }
-
 }

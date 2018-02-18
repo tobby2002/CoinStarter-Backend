@@ -50,13 +50,15 @@ public class CurrencyBatchThread implements Runnable {
         ResponseEntity<String> result = restTemplate.getForEntity(ROOT_URL + currencyTypes.getValue(), String.class);
 
         if (result.getStatusCode() == HttpStatus.OK) {
-            saveCurrency(result.getBody());
+            saveCurrency(result.getBody(), currencyTypes);
         }
     }
 
-    private void saveCurrency(String body) {
+    private void saveCurrency(String body, CurrencyTypes currencyTypes) {
         try {
             Currency currency = mapper.readValue(body, Currency.class);
+            currency.setCurrencyType(currencyTypes);
+
             currencyRepository.save(currency);
         } catch (IOException ignored) {
         }
